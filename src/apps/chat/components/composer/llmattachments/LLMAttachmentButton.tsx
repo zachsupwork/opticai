@@ -1,5 +1,6 @@
 import * as React from 'react';
-// import TimeAgo from 'react-timeago';
+import TimeAgo from 'react-timeago';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { Box, Button, CircularProgress, ColorPaletteProp, Sheet, Typography, VariantProp } from '@mui/joy';
 import AbcIcon from '@mui/icons-material/Abc';
@@ -155,8 +156,7 @@ function attachmentIcons(attachmentDraft: AttachmentDraft, noTooltips: boolean, 
                 {urlImage?.generator === 'youtube-thumbnail' ? 'Thumbnail' : 'Page screenshot'}{' '}
                 {!!urlImage?.timestamp && (
                   <>
-                  www
-                    {/* as of <TimeAgo date={urlImage.timestamp} /> */}
+                    as of <TimeAgo date={urlImage.timestamp} />
                   </>
                 )}
                 .
