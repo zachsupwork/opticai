@@ -47,7 +47,7 @@ const Login = () => {
                     <button type="submit">Login</button>
                 </form>
                 <div className="link-text">
-                    Don't have an account? <span onClick={() => router.push('/signup')}>Sign Up</span>
+                    Don&apos;t have an account? <span onClick={() => router.push('/signup')}>Sign Up</span>
                 </div>
             </div>
         </div>
