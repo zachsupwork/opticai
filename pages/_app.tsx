@@ -22,6 +22,12 @@ import { ProviderSingleTab } from '~/common/providers/ProviderSingleTab';
 import { ProviderTheming } from '~/common/providers/ProviderTheming';
 import { SnackbarInsert } from '~/common/components/snackbar/SnackbarInsert';
 import { hasGoogleAnalytics, OptionalGoogleAnalytics } from '~/common/components/GoogleAnalytics';
+import ProtectedRoute from '~/common/components/ProtectedRoute';
+
+import { AuthContextProvider } from '../src/common/auth/AuthContext';
+import { useRouter } from 'next/router'
+
+const noAuthRequired = ['/login', '/signup']
 
 
 const Big_AGI_App = ({ Component, emotionCache, pageProps }: MyAppProps) => {
@@ -29,6 +35,7 @@ const Big_AGI_App = ({ Component, emotionCache, pageProps }: MyAppProps) => {
   // We are using a nextjs per-page layout pattern to bring the (Optima) layout creation to a shared place
   // This reduces the flicker and the time switching between apps, and seems to not have impact on
   // the build. This is a good trade-off for now.
+  const router = useRouter()
   const getLayout = Component.getLayout ?? ((page: any) => page);
 
   return <>
@@ -44,7 +51,18 @@ const Big_AGI_App = ({ Component, emotionCache, pageProps }: MyAppProps) => {
           {/* ^ Backend capabilities & SSR boundary */}
           <ProviderBootstrapLogic>
             <SnackbarInsert />
-            {getLayout(<Component {...pageProps} />)}
+            {getLayout(
+              <AuthContextProvider>{
+                noAuthRequired.includes(router.pathname) ? (
+                  <Component {...pageProps} />
+                ) : (
+                  <ProtectedRoute>
+                    <Component {...pageProps} />
+                  </ProtectedRoute>
+                )
+              }
+              </AuthContextProvider>
+            )}
             <OverlaysInsert />
           </ProviderBootstrapLogic>
         </ProviderBackendCapabilities>
