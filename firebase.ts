@@ -6,12 +6,12 @@ import { getAuth } from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDVEXHsl8XX9UKDEf61xM8LaukaIgnsAYM",
-  authDomain: "optic-ai-4ae67.firebaseapp.com",
-  projectId: "optic-ai-4ae67",
-  storageBucket: "optic-ai-4ae67.firebasestorage.app",
-  messagingSenderId: "238031259394",
-  appId: "1:238031259394:web:4d8fdd313078f1a66ea41b"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

@@ -23,9 +23,13 @@ import { ProviderTheming } from '~/common/providers/ProviderTheming';
 import { SnackbarInsert } from '~/common/components/snackbar/SnackbarInsert';
 import { hasGoogleAnalytics, OptionalGoogleAnalytics } from '~/common/components/GoogleAnalytics';
 import ProtectedRoute from '~/common/components/ProtectedRoute';
-
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { AuthContextProvider } from '../src/common/auth/AuthContext';
 import { useRouter } from 'next/router'
+
+// Initialize Stripe with your publishable key
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
 const noAuthRequired = ['/login', '/signup']
 
@@ -52,16 +56,18 @@ const Big_AGI_App = ({ Component, emotionCache, pageProps }: MyAppProps) => {
           <ProviderBootstrapLogic>
             <SnackbarInsert />
             {getLayout(
-              <AuthContextProvider>{
-                noAuthRequired.includes(router.pathname) ? (
-                  <Component {...pageProps} />
-                ) : (
-                  <ProtectedRoute>
+              <Elements stripe={stripePromise}>
+                <AuthContextProvider>{
+                  noAuthRequired.includes(router.pathname) ? (
                     <Component {...pageProps} />
-                  </ProtectedRoute>
-                )
-              }
-              </AuthContextProvider>
+                  ) : (
+                    <ProtectedRoute>
+                      <Component {...pageProps} />
+                    </ProtectedRoute>
+                  )
+                }
+                </AuthContextProvider>
+              </Elements>
             )}
             <OverlaysInsert />
           </ProviderBootstrapLogic>
