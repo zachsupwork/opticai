@@ -19,7 +19,7 @@ import { V3StoreDataToHead, V4ToHeadConverters } from './chats.converters';
 import { conversationTitle, createDConversation, DConversation, DConversationId, duplicateDConversationNoVoid } from './chat.conversation';
 import { estimateTokensForFragments } from './chat.tokens';
 import { gcChatImageAssets } from '~/common/stores/chat/chat.gc';
-
+import { auth } from '../../../../firebase';
 
 /// Conversations Store
 
@@ -492,12 +492,55 @@ function updateMessageTokenCount(message: DMessage, llmId: DLLMId | null, forceU
     try {
       const dllm = findLLMOrThrow(llmId);
       message.tokenCount = estimateTokensForFragments(dllm, message.role, message.fragments, false, debugFrom);
+      sendTokenCountToStripe(message.tokenCount);
+      console.log('check the token count', message.tokenCount)
     } catch (e) {
       console.error(`updateMessageTokenCount: LLM not found for ID ${llmId}`);
       message.tokenCount = 0;
     }
   }
   return message.tokenCount;
+}
+
+const sendTokenCountToStripe = async (tokenCount: Number) => {
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    console.error('User not found');
+    return;
+  }
+  const idToken = await currentUser.getIdToken();
+  const response = await fetch('/api/check-stripe-customer', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`,
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.hasStripeCustomer) {
+      const stripeCustomerId = data.stripeCustomerId;
+      
+      console.log('stripeCustomerId', stripeCustomerId, 'tokenCount', tokenCount)
+      const stripeResponse = await fetch('/api/meter-event', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({ tokenCount, stripeCustomerId }),
+      });
+      if (!stripeResponse.ok) {
+        console.error('Failed to send token count to API');
+      } else {
+        console.log('Successfully sent token count to API');
+      }
+    } else {
+      // Unauthorized, possibly invalid token, redirect to /login
+      return;
+    };
+    
+  }
 }
 
 

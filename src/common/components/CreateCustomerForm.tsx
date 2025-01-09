@@ -7,10 +7,12 @@ import {
   CardElementProps,
 } from '@stripe/react-stripe-js';
 import { StripeError, PaymentMethod, PaymentIntentResult } from '@stripe/stripe-js';
+import { useRouter } from 'next/router';
 
 interface CreateCustomerFormProps {}
 
 const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -21,6 +23,7 @@ const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -76,6 +79,7 @@ const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
           setStatus('Subscription created and payment confirmed!');
         } else {
           setStatus('Subscription created successfully!');
+          router.push('/');
         }
         console.log('Customer:', response.data.customer);
         console.log('Subscription:', response.data.subscription);
