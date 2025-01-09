@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '~/common/auth/AuthContext';
 import { useRouter } from 'next/router';
 import '~/common/styles/Auth.css'; // Reusing the same styles
+import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
 
 const Login = () => {
     const router = useRouter();
@@ -17,8 +18,10 @@ const Login = () => {
         console.log(user);
         try {
             await login(data.email, data.password);
+            addSnackbar({ key: 'chat-draw-empty', message: 'Login successful!', type: 'success' });
             router.push('/');
         } catch (err) {
+            addSnackbar({ key: 'unexpected', message: 'Please check your credential again', type: 'issue' });
             console.error(err);
         }
     };

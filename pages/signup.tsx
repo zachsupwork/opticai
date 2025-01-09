@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '~/common/auth/AuthContext';
 import { useRouter } from 'next/router';
 import '~/common/styles/Auth.css';
+import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
+
 
 const Signup = () => {
     const { signup } = useAuth();
@@ -21,7 +23,9 @@ const Signup = () => {
         try {
             await signup(data.email, data.password);
             router.push('/login');
+            addSnackbar({ key: 'chat-draw-empty', message: 'Register successful!', type: 'success' });
         } catch (err) {
+            addSnackbar({ key: 'unexpected', message: String(err), type: 'issue' });
             console.error(err);
         }
     };
