@@ -158,6 +158,8 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
   const hasDrawerContent = useOptimaPortalHasInputs('optima-portal-drawer');
   const panelContent = useOptimaAppMenu();
   const panelIsOpen = useOptimaPanelOpen();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   // derived state
   const navIsShown = checkVisibleNav(props.currentApp);
@@ -170,9 +172,8 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
     return null;
 
   // Logout
-  const router = useRouter();
-  const { user, logout } = useAuth();
   const handleLogout = async () => {
+    setIsLoading(true);
     try {
       await signOut(auth);
       addSnackbar({ key: 'logout-success', message: 'Logout successful!', type: 'success' });  
@@ -180,6 +181,8 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
     } catch (err) {
       addSnackbar({ key: 'logout-error', message: 'An error occurred during logout', type: 'warning' });  
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -214,7 +217,7 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
         <InvertedBarCornerItem>
           <IconButton
             ref={appMenuAnchor}
-            disabled={false}
+            disabled={isLoading || contentToPopup ? !appMenuAnchor : false}
             onClick={handleLogout}
           >
             <LogoutIcon />
