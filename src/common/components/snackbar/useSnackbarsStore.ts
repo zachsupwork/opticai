@@ -10,7 +10,7 @@ export const SNACKBAR_ANIMATION_DURATION = 200;
 export interface SnackbarMessage {
   key: string;
   message: string;
-  type: 'success' | 'issue' | 'center-title' | 'info' | 'precondition-fail';
+  type: 'success' | 'issue' | 'center-title' | 'info' | 'precondition-fail' | 'warning';
   closeButton?: boolean,
   overrides?: Partial<SnackbarTypeMap['props']>;
 }

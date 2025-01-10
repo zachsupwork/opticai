@@ -18,7 +18,6 @@ export const AuthContextProvider = ({
 }) => {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
-  console.log(user)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,9 +44,8 @@ export const AuthContextProvider = ({
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  const logout = async () => {
-    setUser(null)
-    await signOut(auth)
+  const logout = () => {
+    return signOut(auth)
   }
 
   return (

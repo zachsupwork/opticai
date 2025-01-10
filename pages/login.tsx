@@ -21,7 +21,7 @@ const Login = () => {
             addSnackbar({ key: 'chat-draw-empty', message: 'Login successful!', type: 'success' });
             router.push('/');
         } catch (err) {
-            addSnackbar({ key: 'unexpected', message: 'Please check your credential again', type: 'issue' });
+            addSnackbar({ key: 'unexpected', message: 'Please check your credential again', type: 'warning' });
             console.error(err);
         }
     };

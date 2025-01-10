@@ -6,6 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { AgiSquircleIcon } from '~/common/components/icons/AgiSquircleIcon';
 import { Brand } from '~/common/app.config';
@@ -23,6 +24,11 @@ import { optimaCloseAppMenu, optimaClosePanel, optimaOpenAppMenu, optimaOpenDraw
 import { useOptimaPortalHasInputs } from '../portals/useOptimaPortalHasInputs';
 import { useOptimaPortalOutRef } from '../portals/useOptimaPortalOutRef';
 
+import { useRouter } from 'next/router';
+import { useAuth } from '~/common/auth/AuthContext';
+import { auth } from '../../../../../firebase';
+import { signOut } from 'firebase/auth';
+import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
 
 // Center Items (Portal)
 
@@ -163,6 +169,20 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
   if (desktopHideBarAndMenus)
     return null;
 
+  // Logout
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      addSnackbar({ key: 'logout-success', message: 'Logout successful!', type: 'success' });  
+      router.push('/login');
+    } catch (err) {
+      addSnackbar({ key: 'logout-error', message: 'An error occurred during logout', type: 'warning' });  
+      console.error(err);
+    }
+  };
+
   return <>
 
     {/* Bar: [Drawer control] [Center Items] [Panel/Menu control] */}
@@ -187,6 +207,20 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
 
       {/* Pluggable Toolbar Items */}
       <CenterItemsPortal currentApp={props.currentApp} />
+
+      
+      {/* Panel/Menu button */}
+      {(props.isMobile || !!panelContent) && (
+        <InvertedBarCornerItem>
+          <IconButton
+            ref={appMenuAnchor}
+            disabled={false}
+            onClick={handleLogout}
+          >
+            <LogoutIcon />
+          </IconButton>
+        </InvertedBarCornerItem>
+      )}
 
       {/* Panel/Menu button */}
       {(props.isMobile || !!panelContent) && (

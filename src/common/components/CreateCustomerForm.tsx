@@ -8,22 +8,23 @@ import {
 } from '@stripe/react-stripe-js';
 import { StripeError, PaymentMethod, PaymentIntentResult } from '@stripe/stripe-js';
 import { useRouter } from 'next/router';
+import { useAuth } from '../auth/AuthContext';
 
 interface CreateCustomerFormProps {}
 
 const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
+  const { user } = useAuth();
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
 
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>(user.email || '');
   const [name, setName] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -118,18 +119,7 @@ const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
       <div style={fieldStyle}>
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={inputStyle}
-        />
-      </div>
-      <div style={fieldStyle}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name on card:</label>
         <input
           id="name"
           type="text"

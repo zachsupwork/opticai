@@ -23,9 +23,9 @@ const Signup = () => {
         try {
             await signup(data.email, data.password);
             router.push('/login');
-            addSnackbar({ key: 'chat-draw-empty', message: 'Register successful!', type: 'success' });
+            addSnackbar({ key: 'register-success', message: 'Register successful!', type: 'success' });
         } catch (err) {
-            addSnackbar({ key: 'unexpected', message: String(err), type: 'issue' });
+            addSnackbar({ key: 'unexpected', message: String(err), type: 'warning' });
             console.error(err);
         }
     };

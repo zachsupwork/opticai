@@ -15,8 +15,8 @@ const defaultTypeConfig: {
 } = {
   'success': {
     color: 'success',
-    variant: 'soft',
-    autoHideDuration: 5000,
+    variant: 'solid',
+    autoHideDuration: 3000,
     clickAway: false,
     closeButton: true,
   },
@@ -45,6 +45,13 @@ const defaultTypeConfig: {
   'precondition-fail': {
     color: 'warning',
     variant: 'outlined',
+    autoHideDuration: 2000,
+    clickAway: false,
+    closeButton: true,
+  },
+  'warning': {
+    color: 'warning',
+    variant: 'solid',
     autoHideDuration: 2000,
     clickAway: false,
     closeButton: true,
