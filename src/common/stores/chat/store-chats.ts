@@ -255,8 +255,12 @@ export const useChatStore = create<ConversationsStore>()(/*devtools(*/
           // [workspace] import message's resources into the workspace
           workspaceActions().importAssignmentsFromMessages(workspaceForConversationIdentity(conversationId), [message]);
 
-          if (!message.pendingIncomplete)
+          if (!message.pendingIncomplete) {
+            const history_token_count = _get().conversations.find(_c => _c.id === conversationId)?.tokenCount ?? 0;
+            console.log('history_token_count--->', history_token_count);
+            sendTokenCountToStripe(history_token_count)
             updateMessagesTokenCounts([message], true, 'appendMessage');
+          }
 
           const messages = [...conversation.messages, message];
 
@@ -493,7 +497,7 @@ function updateMessageTokenCount(message: DMessage, llmId: DLLMId | null, forceU
       const dllm = findLLMOrThrow(llmId);
       message.tokenCount = estimateTokensForFragments(dllm, message.role, message.fragments, false, debugFrom);
       sendTokenCountToStripe(message.tokenCount);
-      console.log('check the token count', message.tokenCount)
+      console.log('****check the token count', message.tokenCount)
     } catch (e) {
       console.error(`updateMessageTokenCount: LLM not found for ID ${llmId}`);
       message.tokenCount = 0;
