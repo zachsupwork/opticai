@@ -30,6 +30,7 @@ import { auth } from '../../../../../firebase';
 import { signOut } from 'firebase/auth';
 import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
 
+import UserPopup from '~/common/components/modals/UserPopup';
 // Center Items (Portal)
 
 const PageBarItemsFallback = (props: { currentApp?: NavItemApp }) =>
@@ -176,10 +177,10 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
     setIsLoading(true);
     try {
       await signOut(auth);
-      addSnackbar({ key: 'logout-success', message: 'Logout successful!', type: 'success' });  
+      addSnackbar({ key: 'logout-success', message: 'Logout successful!', type: 'success' });
       router.push('/login');
     } catch (err) {
-      addSnackbar({ key: 'logout-error', message: 'An error occurred during logout', type: 'warning' });  
+      addSnackbar({ key: 'logout-error', message: 'An error occurred during logout', type: 'warning' });
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -211,7 +212,14 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
       {/* Pluggable Toolbar Items */}
       <CenterItemsPortal currentApp={props.currentApp} />
 
-      
+
+      {/* Panel/Menu button */}
+      {(props.isMobile || !!panelContent) && (
+        <InvertedBarCornerItem>
+          <UserPopup />
+        </InvertedBarCornerItem>
+      )}
+
       {/* Panel/Menu button */}
       {(props.isMobile || !!panelContent) && (
         <InvertedBarCornerItem>
