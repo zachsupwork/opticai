@@ -17,7 +17,7 @@ const beamSteps: ExplainerPage[] = [
     // titleSuffix: ' azing',
     // titleSquircle: true,
     mdContent: `
-**Beam** is a chat modality engage multiple AI models, [together](https://big-agi.com/blog/beam-multi-model-ai-reasoning). 
+**Beam** is a chat modality engage multiple AI models. 
  
 It's like having a brainstorm session with several smart people,
 each adding their own unique perspective.
