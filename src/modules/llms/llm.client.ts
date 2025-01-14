@@ -21,10 +21,12 @@ export async function llmsUpdateModelsForServiceOrThrow(serviceId: DModelsServic
 
   // fetch models
   const data = await vendor.rpcUpdateModelsOrThrow(transportAccess);
-
   // update the global models store
   llmsStoreActions().setLLMs(
-    data.models.map(model => _createDLLMFromModelDescription(model, service)),
+    // Eliminate all o1 models
+    data.models.filter(model => !model.id.includes('o1')).map(model => _createDLLMFromModelDescription(model, service)),
+    // Accept o1 models
+    // data.models.map(model => _createDLLMFromModelDescription(model, service)),
     service.id,
     true,
     keepUserEdits,
