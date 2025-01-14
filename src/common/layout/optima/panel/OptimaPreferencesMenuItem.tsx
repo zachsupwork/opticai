@@ -21,7 +21,7 @@ export function OptimaPreferencesMenuItem(props: { onCloseMenu: () => void }) {
   return (
     <MenuItem onClick={handleShowPreferences}>
       <ListItemDecorator><SettingsIcon /></ListItemDecorator>
-      Big-AGI Preferences{/*<KeyStroke combo='Ctrl + ,' />*/}
+      {/*<KeyStroke combo='Ctrl + ,' />*/}
       <DarkModeToggleButton />
     </MenuItem>
   );

@@ -75,16 +75,6 @@ export function MobileNavItems(props: { currentApp?: NavItemApp }) {
         justifyContent: 'center',
         gap: 1,
       }}>
-        <Button
-          size='sm'
-          color='neutral'
-          variant={props.currentApp?.route === '/news' ? 'solid' : 'plain'}
-          onClick={() => navigateToNews()}
-          sx={{ minWidth: 80 }}
-        >
-          News
-        </Button>
-
         {/* HARDCODED: Models */}
         <Button
           size='sm'
@@ -96,13 +86,6 @@ export function MobileNavItems(props: { currentApp?: NavItemApp }) {
           Models
         </Button>
 
-        {/* HARDCODED: Discord */}
-        <BringTheLove
-          text={navItems.links[0].name}
-          icon={navItems.links[0].icon}
-          link={navItems.links[0].href}
-          sx={{ color: 'text.primary', px: 0, minWidth: 80 }}
-        />
       </Box>
 
     </Sheet>

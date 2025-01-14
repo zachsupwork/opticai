@@ -111,17 +111,6 @@ export const navItems: {
       fullWidth: true,
     },
     {
-      name: 'Draw',
-      icon: FormatPaintOutlinedIcon,
-      iconActive: FormatPaintTwoToneIcon,
-      type: 'app',
-      route: '/draw',
-      hideDrawer: true,
-      // hideOnMobile: true,
-      // isDev: true,
-      // _delete: true,
-    },
-    {
       name: 'Cortex',
       icon: AutoAwesomeOutlinedIcon,
       iconActive: AutoAwesomeIcon,
@@ -212,15 +201,6 @@ export const navItems: {
       hideIcon: hasNoChatLinkItems,
       hideNav: hasNoChatLinkItems,
     },
-    {
-      name: 'News',
-      icon: EventNoteOutlinedIcon,
-      iconActive: EventNoteIcon,
-      type: 'app',
-      route: '/news',
-      hideBar: true,
-      hideDrawer: true,
-    },
   ],
 
   // Modals
@@ -247,18 +227,6 @@ export const navItems: {
     //   icon: TwitterIcon,
     //   href: 'https://twitter.com',
     // },
-    {
-      type: 'extLink',
-      name: 'Discord',
-      icon: DiscordIcon,
-      href: Brand.URIs.SupportInvite,
-    },
-    {
-      type: 'extLink',
-      name: 'GitHub',
-      icon: GitHubIcon,
-      href: Brand.URIs.OpenRepo,
-    },
   ],
 
 };

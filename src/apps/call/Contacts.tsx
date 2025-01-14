@@ -268,7 +268,7 @@ export function Contacts(props: { setCallIntent: (intent: AppCallIntent) => void
 
       <Box>
         <Typography level='title-lg'>
-          Call AGI
+          Call
         </Typography>
         <Typography level='title-sm' sx={{ mt: 1 }}>
           Explore ideas and ignite creativity
