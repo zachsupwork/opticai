@@ -22,11 +22,11 @@ export function SetupFormRefetchButton(props: {
 
       {props.leftButton}
 
-      {!!props.advanced && (
+      {/* {!!props.advanced && (
         <FormLabel onClick={props.advanced.toggle} sx={{ textDecoration: 'underline', cursor: 'pointer' }}>
           {props.advanced.on ? 'Hide Advanced' : 'Advanced'}
         </FormLabel>
-      )}
+      )} */}
 
       <Button
         color={props.error ? 'warning' : 'primary'}
