@@ -41,7 +41,7 @@ export function GroqServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='groq-key' label='Groq API Key'

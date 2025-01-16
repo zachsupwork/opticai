@@ -49,7 +49,7 @@ export function GeminiServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='gemini-key' label='Gemini API Key'

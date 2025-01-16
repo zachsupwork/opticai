@@ -66,7 +66,7 @@ export function OpenRouterServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <Typography level='body-sm'>
       <Link href='https://openrouter.ai/keys' target='_blank'>OpenRouter</Link> is an independent service

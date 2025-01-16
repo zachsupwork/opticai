@@ -47,7 +47,7 @@ export function OpenAIServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='openai-key' label='API Key'

@@ -46,7 +46,7 @@ export function OpenPipeServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='openpipe-key' label='OpenPipe Project API Key'
