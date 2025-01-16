@@ -40,7 +40,7 @@ export function MistralServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='mistral-key' label='Mistral Key'
       rightLabel={<>{needsUserKey
         ? !mistralKey && <Link level='body-sm' href={MISTRAL_REG_LINK} target='_blank'>request Key</Link>
@@ -49,7 +49,7 @@ export function MistralServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={mistralKey} onChange={value => updateSettings({ oaiKey: value })}
       required={needsUserKey} isError={showKeyError}
       placeholder='...'
-    />
+    /> */}
 
     <Typography level='body-sm'>
       In order of capabilities we have Large, Medium, Small (Open 8x7B = Small 2312) and Tiny (Open 7B = Tiny 2312) models.

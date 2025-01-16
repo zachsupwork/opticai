@@ -37,7 +37,7 @@ export function AzureServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <FormTextField
+    {/* <FormTextField
       autoCompleteId='azure-endpoint'
       title='Azure Endpoint'
       description={<Link level='body-sm' href='https://github.com/enricoros/big-agi/blob/main/docs/config-azure-openai.md' target='_blank'>configuration</Link>}
@@ -45,9 +45,9 @@ export function AzureServiceSetup(props: { serviceId: DModelsServiceId }) {
       isError={hostError}
       value={azureEndpoint}
       onChange={text => updateSettings({ azureEndpoint: text })}
-    />
+    /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='azure-key' label='Azure Key'
       rightLabel={<>{needsUserKey
         ? !azureKey && <Link level='body-sm' href='https://azure.microsoft.com/en-us/products/ai-services/openai-service' target='_blank'>request Key</Link>
@@ -56,7 +56,7 @@ export function AzureServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={azureKey} onChange={value => updateSettings({ azureKey: value })}
       required={needsUserKey} isError={keyError}
       placeholder='...'
-    />
+    /> */}
 
     <SetupFormRefetchButton refetch={refetch} disabled={!shallFetchSucceed || isFetching} loading={isFetching} error={isError} />
 

@@ -49,7 +49,7 @@ export function TogetherAIServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='togetherai-key' label='Together AI Key'
       rightLabel={<>{needsUserKey
         ? !togetherKey && <Link level='body-sm' href={TOGETHERAI_REG_LINK} target='_blank'>request Key</Link>
@@ -58,7 +58,7 @@ export function TogetherAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={togetherKey} onChange={value => updateSettings({ togetherKey: value })}
       required={needsUserKey} isError={showKeyError}
       placeholder='...'
-    />
+    /> */}
 
     <Typography level='body-sm'>
       The Together Inference platform allows you to run recent machine learning models with good speed and low

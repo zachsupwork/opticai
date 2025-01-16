@@ -54,13 +54,13 @@ export function LMStudioServiceSetup(props: { serviceId: DModelsServiceId }) {
       how to link to your LM Studio instance.
     </Typography>
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='lmstudio-url' label='LM Studio API'
       required noKey
       rightLabel={<Link level='body-sm' href='https://github.com/enricoros/big-agi/blob/main/docs/config-local-lmstudio.md' target='_blank'>Learn more</Link>}
       placeholder='e.g., http://127.0.0.1:1234'
       value={oaiHost} onChange={value => updateSettings({ oaiHost: value })}
-    />
+    /> */}
 
     <SetupFormRefetchButton refetch={refetch} disabled={!shallFetchSucceed || isFetching} loading={isFetching} error={isError} />
 

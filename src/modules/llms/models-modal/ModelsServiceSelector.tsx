@@ -199,7 +199,7 @@ export function ModelsServiceSelector(props: {
         {serviceItems.map(item => item.component)}
       </Select>
 
-      {/* {isMobile ? (
+      {isMobile ? (
         <IconButton variant={noServices ? 'solid' : 'plain'} color='primary' onClick={handleShowVendors} disabled={!!vendorsMenuAnchor}>
           <AddIcon />
         </IconButton>
@@ -207,7 +207,7 @@ export function ModelsServiceSelector(props: {
         <Button variant={noServices ? 'solid' : 'plain'} onClick={handleShowVendors} disabled={!!vendorsMenuAnchor} startDecorator={<AddIcon />}>
           Add
         </Button>
-      )} */}
+      )}
 
       <IconButton
         variant='plain' color='neutral' disabled={!enableDeleteButton} sx={{ ml: 'auto' }}

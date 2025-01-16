@@ -76,7 +76,7 @@ export function LocalAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       and then input the address below.
     </Typography>
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='localai-host' label='LocalAI URL'
       placeholder='e.g., http://127.0.0.1:8080'
       noKey
@@ -84,15 +84,15 @@ export function LocalAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       isError={userHostError}
       rightLabel={backendHasHost ? <AlreadySet /> : <Link level='body-sm' href='https://localai.io' target='_blank'>Learn more</Link>}
       value={localAIHost} onChange={value => updateSettings({ localAIHost: value })}
-    />
+    /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='localai-key' label='(optional) API Key'
       placeholder='...'
       required={false}
       rightLabel={backendHasKey ? '✔️ already set in server' : undefined}
       value={localAIKey} onChange={value => updateSettings({ localAIKey: value })}
-    />
+    /> */}
 
     <SetupFormRefetchButton
       refetch={refetch} disabled={!shallFetchSucceed || isFetching} loading={isFetching} error={isError}

@@ -40,7 +40,7 @@ export function XAIServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='xai-key'
       label='API Key'
       rightLabel={<>{needsUserKey
@@ -52,7 +52,7 @@ export function XAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       required={needsUserKey}
       isError={showKeyError}
       placeholder='Your xAI API Key'
-    />
+    /> */}
 
     {/*<FormTextField*/}
     {/*  autoCompleteId='xai-host'*/}

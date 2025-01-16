@@ -76,7 +76,7 @@ export function OpenRouterServiceSetup(props: { serviceId: DModelsServiceId }) {
       Configuration &amp; documentation</Link>.
     </Typography>
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='openrouter-key' label='OpenRouter API Key'
       rightLabel={<>{needsUserKey
         ? !oaiKey && <Link level='body-sm' href='https://openrouter.ai/keys' target='_blank'>your keys</Link>
@@ -86,7 +86,7 @@ export function OpenRouterServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={oaiKey} onChange={value => updateSettings({ oaiKey: value })}
       required={needsUserKey} isError={keyError}
       placeholder='sk-or-...'
-    />
+    /> */}
 
     <Typography level='body-sm'>
       🎁 A selection of <Link href='https://openrouter.ai/docs#models' target='_blank'>OpenRouter models</Link> are
