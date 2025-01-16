@@ -49,7 +49,7 @@ export function OpenAIServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='openai-key' label='API Key'
       rightLabel={<>{needsUserKey
         ? !oaiKey && <Link level='body-sm' href='https://platform.openai.com/account/api-keys' target='_blank'>create key</Link>
@@ -59,9 +59,9 @@ export function OpenAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={oaiKey} onChange={value => updateSettings({ oaiKey: value })}
       required={needsUserKey} isError={keyError}
       placeholder='sk-...'
-    />
+    /> */}
 
-    {advanced.on && <FormTextField
+    {/* {advanced.on && <FormTextField
       autoCompleteId='openai-host'
       title='API Endpoint'
       tooltip={`An OpenAI compatible endpoint to be used in place of 'api.openai.com'.\n\nCould be used for Helicone, Cloudflare, or other OpenAI compatible cloud or local services.\n\nExamples:\n - ${HELICONE_OPENAI_HOST}\n - localhost:1234`}
@@ -103,7 +103,7 @@ export function OpenAIServiceSetup(props: { serviceId: DModelsServiceId }) {
       </>}
       checked={moderationCheck}
       onChange={on => updateSettings({ moderationCheck: on })}
-    />}
+    />} */}
 
     <SetupFormRefetchButton refetch={refetch} disabled={isFetching} error={isError} loading={isFetching} advanced={advanced} />
 
