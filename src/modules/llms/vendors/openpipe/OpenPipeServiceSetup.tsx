@@ -48,7 +48,7 @@ export function OpenPipeServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='openpipe-key' label='OpenPipe Project API Key'
       rightLabel={<>{needsUserKey
         ? !openPipeKey && <Link level='body-sm' href={OPENPIPE_API_KEY_LINK} target='_blank'>Get API Key</Link>
@@ -57,7 +57,7 @@ export function OpenPipeServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={openPipeKey} onChange={value => updateSettings({ openPipeKey: value })}
       required={needsUserKey} isError={showKeyError}
       placeholder='opk_...'
-    />
+    /> */}
 
     {/*<FormControl orientation='horizontal' sx={{ justifyContent: 'space-between', alignItems: 'center' }}>*/}
     {/*  <FormLabelStart*/}

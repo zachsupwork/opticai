@@ -40,7 +40,7 @@ export function OllamaServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <FormTextField
+    {/* <FormTextField
       autoCompleteId='ollama-host'
       title='Ollama Host'
       description={<Link level='body-sm' href='https://github.com/enricoros/big-agi/blob/main/docs/config-local-ollama.md' target='_blank'>Information</Link>}
@@ -48,7 +48,7 @@ export function OllamaServiceSetup(props: { serviceId: DModelsServiceId }) {
       isError={hostError}
       value={ollamaHost || ''}
       onChange={text => updateSettings({ ollamaHost: text })}
-    />
+    /> */}
 
     <FormSwitchControl
       title='JSON Output' on='Enabled' fullWidth

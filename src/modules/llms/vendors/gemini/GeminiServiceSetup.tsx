@@ -51,7 +51,7 @@ export function GeminiServiceSetup(props: { serviceId: DModelsServiceId }) {
 
     {/* <ApproximateCosts serviceId={service?.id} /> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='gemini-key' label='Gemini API Key'
       rightLabel={<>{needsUserKey
         ? !geminiKey && <Link level='body-sm' href={GEMINI_API_KEY_LINK} target='_blank'>request Key</Link>
@@ -60,7 +60,7 @@ export function GeminiServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={geminiKey} onChange={value => updateSettings({ geminiKey: value.trim() })}
       required={needsUserKey} isError={showKeyError}
       placeholder='...'
-    />
+    /> */}
 
     <FormControl orientation='horizontal' sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
       <FormLabelStart title='Safety Settings'

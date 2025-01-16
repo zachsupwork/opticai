@@ -56,7 +56,7 @@ export function AnthropicServiceSetup(props: { serviceId: DModelsServiceId }) {
       </Alert>
     </ApproximateCosts> */}
 
-    <FormInputKey
+    {/* <FormInputKey
       autoCompleteId='anthropic-key' label={!!anthropicHost ? 'API Key' : 'Anthropic API Key'}
       rightLabel={<>{needsUserKey
         ? !anthropicKey && <Link level='body-sm' href='https://www.anthropic.com/earlyaccess' target='_blank'>request Key</Link>
@@ -66,7 +66,7 @@ export function AnthropicServiceSetup(props: { serviceId: DModelsServiceId }) {
       value={anthropicKey} onChange={value => updateSettings({ anthropicKey: value })}
       required={needsUserKey} isError={keyError}
       placeholder='sk-...'
-    />
+    /> */}
 
     <FormControl orientation='horizontal' sx={{ flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
       <FormLabelStart
