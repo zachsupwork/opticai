@@ -41,7 +41,7 @@ export function PerplexityServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='perplexity-key' label='Perplexity API Key'

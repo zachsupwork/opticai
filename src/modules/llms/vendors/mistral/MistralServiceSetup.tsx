@@ -38,7 +38,7 @@ export function MistralServiceSetup(props: { serviceId: DModelsServiceId }) {
 
   return <>
 
-    <ApproximateCosts serviceId={service?.id} />
+    {/* <ApproximateCosts serviceId={service?.id} /> */}
 
     <FormInputKey
       autoCompleteId='mistral-key' label='Mistral Key'
