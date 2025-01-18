@@ -31,7 +31,7 @@ import { useRouter } from 'next/router'
 // Initialize Stripe with your publishable key
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
-const noAuthRequired = ['/login', '/signup']
+const noAuthRequired = ['/login', '/signup', '/reset-password', '/verify-email', '/recover-email', '/email-verification-check', '/404', '/500'];
 
 
 const Big_AGI_App = ({ Component, emotionCache, pageProps }: MyAppProps) => {
