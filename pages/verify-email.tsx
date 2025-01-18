@@ -14,11 +14,11 @@ const VerifyEmail = () => {
             <div className="signup-card">
                 <h2>Verify Email</h2>
                 <p>Please check your email to verify your account</p>
-                <h4>Don&apost receive email?</h4>
+                <h4>Don&apos;t receive email?</h4>
                 <button onClick={() => {
                     if (auth.currentUser) {
                         sendEmailVerification(auth.currentUser);
-                        addSnackbar({ key: 'email-sent', message: 'Email sent!', type: 'success' });
+                        addSnackbar({ key: 'email-sent', message: 'Verification email sent!', type: 'success' });
                     }
                 }}>Resend Email</button>
             </div>
