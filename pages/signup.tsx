@@ -3,15 +3,16 @@ import { useAuth } from '~/common/auth/AuthContext';
 import { useRouter } from 'next/router';
 import '~/common/styles/Auth.css';
 import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
-
+import { getAuth } from 'firebase/auth';
 
 const Signup = () => {
-    const { signup } = useAuth();
+    const { signup, emailVerification } = useAuth();
     const router = useRouter();
     const [data, setData] = useState({
         email: '',
         password: '',
     });
+    const auth = getAuth();
 
     interface SignupData {
         email: string;
@@ -21,6 +22,8 @@ const Signup = () => {
     const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
+            console.log(data);
+            
             await signup(data.email, data.password);
             router.push('/login');
             addSnackbar({ key: 'register-success', message: 'Register successful!', type: 'success' });
@@ -28,6 +31,7 @@ const Signup = () => {
             addSnackbar({ key: 'unexpected', message: String(err), type: 'warning' });
             console.error(err);
         }
+        await emailVerification(auth.currentUser);
     };
 
     return (

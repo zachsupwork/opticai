@@ -27,6 +27,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
             return;
           }
 
+          if (!currentUser.emailVerified) {
+            // User has not verified their email, redirect to /verify-email
+            await router.replace('/verify-email');
+            return;
+          }
+
           const idToken = await currentUser.getIdToken();
 
           // Call the API route to check Stripe customer status
@@ -77,7 +83,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   if (authLoading || checkingStripe) {
     // Optionally, display a loading spinner or placeholder
-    return <div>Loading...</div>;
+    return <div className='text-center'>Loading...</div>;
   }
 
   return <>{children}</>;
