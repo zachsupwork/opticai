@@ -78,7 +78,19 @@ body {
     cursor: pointer;
 }
 
-.link-text span:hover {
+.continue-text {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.continue-text:hover {
+    text-decoration: underline;
+}
+
+.link-text .forgot-password span:hover {
     text-decoration: underline;
 }
 
