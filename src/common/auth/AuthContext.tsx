@@ -4,6 +4,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendEmailVerification,
+  User,
 } from 'firebase/auth'
 import { auth } from '../../../firebase'
 
@@ -40,6 +42,12 @@ export const AuthContextProvider = ({
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
+  const emailVerification = (user: User) => {
+    if (user) {
+      return sendEmailVerification(user);
+    }
+  }
+
   const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
@@ -49,7 +57,7 @@ export const AuthContextProvider = ({
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, emailVerification }}>
       {loading ? null : children}
     </AuthContext.Provider>
   )

@@ -3,24 +3,33 @@ import { useAuth } from '~/common/auth/AuthContext';
 import { useRouter } from 'next/router';
 import '~/common/styles/Auth.css';
 import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
-
+import { getAuth } from 'firebase/auth';
 
 const Signup = () => {
-    const { signup } = useAuth();
+    const { signup, emailVerification } = useAuth();
     const router = useRouter();
     const [data, setData] = useState({
         email: '',
         password: '',
+        confirmPassword: '',
     });
+    const auth = getAuth();
 
     interface SignupData {
         email: string;
         password: string;
+        confirmPassword: string;
     }
 
     const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (data.password !== data.confirmPassword) {
+            addSnackbar({ key: 'password-mismatch', message: 'Passwords do not match', type: 'warning' });
+            return;
+        }
         try {
+            console.log(data);
+            
             await signup(data.email, data.password);
             router.push('/login');
             addSnackbar({ key: 'register-success', message: 'Register successful!', type: 'success' });
@@ -28,6 +37,7 @@ const Signup = () => {
             addSnackbar({ key: 'unexpected', message: String(err), type: 'warning' });
             console.error(err);
         }
+        await emailVerification(auth.currentUser);
     };
 
     return (
@@ -50,6 +60,14 @@ const Signup = () => {
                         required
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         value={data.password}
+                    />
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        placeholder="Confirm your password"
+                        required
+                        onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
+                        value={data.confirmPassword}
                     />
                     <button type="submit">Sign Up</button>
                 </form>
