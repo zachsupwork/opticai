@@ -11,16 +11,22 @@ const Signup = () => {
     const [data, setData] = useState({
         email: '',
         password: '',
+        confirmPassword: '',
     });
     const auth = getAuth();
 
     interface SignupData {
         email: string;
         password: string;
+        confirmPassword: string;
     }
 
     const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (data.password !== data.confirmPassword) {
+            addSnackbar({ key: 'password-mismatch', message: 'Passwords do not match', type: 'warning' });
+            return;
+        }
         try {
             console.log(data);
             
@@ -54,6 +60,14 @@ const Signup = () => {
                         required
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         value={data.password}
+                    />
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        placeholder="Confirm your password"
+                        required
+                        onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
+                        value={data.confirmPassword}
                     />
                     <button type="submit">Sign Up</button>
                 </form>
