@@ -14,7 +14,7 @@ const VerifyEmail = () => {
             <div className="signup-card">
                 <h2>Verify Email</h2>
                 <p>Please check your email to verify your account</p>
-                <h4>Don't receive email?</h4>
+                <h4>Don&apost receive email?</h4>
                 <button onClick={() => {
                     if (auth.currentUser) {
                         sendEmailVerification(auth.currentUser);
