@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useAuth } from '~/common/auth/AuthContext';
 import { useRouter } from 'next/router';
-import '~/common/styles/Auth.css'; // Reusing the same styles
+import '~/common/styles/Auth.css';
 import { addSnackbar } from '~/common/components/snackbar/useSnackbarsStore';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const Login = () => {
+    const auth = getAuth();
     const router = useRouter();
     const { user, login } = useAuth();
     const [data, setData] = useState({
@@ -25,6 +27,16 @@ const Login = () => {
             console.error(err);
         }
     };
+
+    const hadleResetPassword = async() => {
+        try {
+            await sendPasswordResetEmail(auth, data.email);
+            addSnackbar({ key: 'chat-draw-empty', message: `Password reset email sent to ${data.email}`, type: 'success' });
+        } catch (err) {
+            addSnackbar({ key: 'unexpected', message: 'Unregistered email address!', type: 'warning' });
+            console.error(err);
+        }
+    }
 
     return (
         <div className="signup-container">
@@ -47,6 +59,9 @@ const Login = () => {
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         value={data.password}
                     />
+                    <div className="forgot-password">
+                        <span onClick={hadleResetPassword}>Forgot Password?</span>
+                    </div>
                     <button type="submit">Login</button>
                 </form>
                 <div className="link-text">

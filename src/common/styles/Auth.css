@@ -65,6 +65,14 @@ body {
     font-size: 0.9rem;
 }
 
+.forgot-password {
+    text-align: right;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+}
+
 .link-text span {
     color: #007bff;
     cursor: pointer;
