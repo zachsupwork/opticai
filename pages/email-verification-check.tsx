@@ -59,7 +59,7 @@ const EmailVerificationCheck: React.FC = () => {
                     <form onSubmit={(e) => e.preventDefault()}>  
                         <h2>Your email is verified successfully</h2>  
                         <div className="continue-text">  
-                            <span onClick={() => router.push('/')}>Continue</span>  
+                            <span onClick={() => router.push('/index')}>Continue</span>  
                         </div>  
                     </form>  
                 )}  

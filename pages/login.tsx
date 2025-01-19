@@ -21,7 +21,7 @@ const Login = () => {
         try {
             await login(data.email, data.password);
             addSnackbar({ key: 'chat-draw-empty', message: 'Login successful!', type: 'success' });
-            router.push('/');
+            router.push('/index');
         } catch (err) {
             addSnackbar({ key: 'unexpected', message: 'Please check your credential again', type: 'warning' });
             console.error(err);
