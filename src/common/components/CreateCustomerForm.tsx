@@ -80,7 +80,7 @@ const CreateCustomerForm: React.FC<CreateCustomerFormProps> = () => {
           setStatus('Subscription created and payment confirmed!');
         } else {
           setStatus('Subscription created successfully!');
-          router.push('/');
+          router.push('/index');
         }
         console.log('Customer:', response.data.customer);
         console.log('Subscription:', response.data.subscription);
